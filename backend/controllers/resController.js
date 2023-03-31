@@ -67,7 +67,8 @@ const updateResource = async (req, res) => {
     { _id: id },
     {
       ...req.body,
-    }
+    },
+    { new: true } //to display the new value
   );
 
   if (!rs) {

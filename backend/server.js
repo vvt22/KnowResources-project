@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const roadmapRoutes = require("./routes/roadmap");
+const resourceRoutes = require("./routes/resource");
 
 // express app
 const app = express();
@@ -15,11 +15,11 @@ app.use((req, res, next) => {
 });
 
 // routes
-app.use("/api/roadmap", roadmapRoutes);
+app.use("/api/resources", resourceRoutes);
 
 //connect to db
 mongoose
-  .connect("mongodb://0.0.0.0:27017/roadmap")
+  .connect("mongodb://0.0.0.0:27017/resourcesdb")
   .then(() => {
     // listen for requests
     app.listen(process.env.PORT, () => {

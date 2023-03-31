@@ -39,10 +39,43 @@ const createResource = async (req, res) => {
 };
 
 // delete a resource
-const deleteResource = async (req, res) => {};
+const deleteResource = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No such resource" });
+  }
+
+  const rs = await Resource.findOneAndDelete({ _id: id });
+
+  if (!rs) {
+    return res.status(400).json({ error: "No such resource" });
+  }
+
+  res.status(200).json(rs);
+};
 
 // update a resource
-const updateResource = async (req, res) => {};
+const updateResource = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No such resource" });
+  }
+
+  const rs = await Resource.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    }
+  );
+
+  if (!rs) {
+    return res.status(400).json({ error: "No such resource" });
+  }
+
+  res.status(200).json(rs);
+};
 
 module.exports = {
   getResources,

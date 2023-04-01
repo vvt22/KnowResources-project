@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 // components
 import ResDetails from "../components/ResDetails";
+import ResForm from "../components/ResForm";
 
 const Home = () => {
   const [resource, setResource] = useState(null);
@@ -25,6 +26,7 @@ const Home = () => {
         {resource &&
           resource.map((res) => <ResDetails res={res} key={res._id} />)}
       </div>
+      <ResForm />
     </div>
   );
 };

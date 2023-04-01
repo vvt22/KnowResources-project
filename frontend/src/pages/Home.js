@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 
 // components
+import ResDetails from "../components/ResDetails";
+
 const Home = () => {
   const [resource, setResource] = useState(null);
 
@@ -20,7 +22,8 @@ const Home = () => {
   return (
     <div className="home">
       <div className="resource">
-        {resource && resource.map((res) => <p key={res._id}>{res.title}</p>)}
+        {resource &&
+          resource.map((res) => <ResDetails res={res} key={res._id} />)}
       </div>
     </div>
   );

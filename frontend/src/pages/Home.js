@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useResContext } from "../hooks/useResContext";
+import { useContext, useEffect } from "react";
+// import { useResContext } from "../hooks/useResContext";
+import { ResContext } from "../context/ResContext";
 
 // components
 import ResDetails from "../components/ResDetails";
 import ResForm from "../components/ResForm";
 
 const Home = () => {
-  const { resource, dispatch } = useResContext();
+  const { resource, dispatch } = useContext(ResContext);
 
   useEffect(() => {
     const fetchResource = async () => {

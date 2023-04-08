@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useResContext } from "../hooks/useResContext";
 
 const ResForm = () => {
+  const { dispatch } = useResContext();
   const [title, setTitle] = useState("");
   const [links, setLinks] = useState("");
   const [videos, setVideos] = useState("");
@@ -28,7 +30,7 @@ const ResForm = () => {
       setTitle("");
       setLinks("");
       setVideos("");
-      console.log("new resource added:", json);
+      dispatch({ type: "CREATE_RESOURCE", payload: json });
     }
   };
 

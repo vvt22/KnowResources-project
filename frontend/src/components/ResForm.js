@@ -1,8 +1,9 @@
-import { useState } from "react";
-import { useResContext } from "../hooks/useResContext";
+import { useContext, useState } from "react";
+// import { useResContext } from "../hooks/useResContext";
+import { ResContext } from "../context/ResContext";
 
 const ResForm = () => {
-  const { dispatch } = useResContext();
+  const { dispatch } = useContext(ResContext);
   const [title, setTitle] = useState("");
   const [links, setLinks] = useState("");
   const [videos, setVideos] = useState("");

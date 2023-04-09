@@ -12,6 +12,10 @@ export const resReducer = (state, action) => {
       return {
         resource: [action.payload, ...state.resource],
       };
+    case "DELETE_RESOURCE":
+      return {
+        resource: state.resource.filter((w) => w._id !== action.payload._id),
+      };
     default:
       return state;
   }

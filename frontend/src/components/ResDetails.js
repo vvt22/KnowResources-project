@@ -1,4 +1,6 @@
 import { useResContext } from "../hooks/useResContext";
+// date fns
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 const ResDetails = ({ res }) => {
   const { dispatch } = useResContext();
@@ -24,8 +26,10 @@ const ResDetails = ({ res }) => {
         <strong>Videos: </strong>
         {res.videos}
       </p>
-      <p>{res.createdAt}</p>
-      <span onClick={handleClick}>delete</span>
+      <p>{formatDistanceToNow(new Date(res.createdAt), { addSuffix: true })}</p>
+      <span className="material-symbols-outlined" onClick={handleClick}>
+        delete
+      </span>
     </div>
   );
 };

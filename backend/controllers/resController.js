@@ -28,6 +28,22 @@ const getResource = async (req, res) => {
 // create a new resource
 const createResource = async (req, res) => {
   const { title, links, videos } = req.body;
+  let emptyFields = [];
+
+  if (!title) {
+    emptyFields.push("title");
+  }
+  if (!links) {
+    emptyFields.push("links");
+  }
+  if (!videos) {
+    emptyFields.push("videos");
+  }
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all fields", emptyFields });
+  }
 
   // add to the database
   try {

@@ -8,6 +8,7 @@ const ResForm = () => {
   const [links, setLinks] = useState("");
   const [videos, setVideos] = useState("");
   const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,8 +26,10 @@ const ResForm = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
+      setEmptyFields([]);
       setError(null);
       setTitle("");
       setLinks("");
@@ -44,6 +47,7 @@ const ResForm = () => {
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
+        className={emptyFields.includes("title") ? "error" : ""}
       />
 
       <label>Links:</label>
@@ -51,6 +55,7 @@ const ResForm = () => {
         type="text"
         onChange={(e) => setLinks(e.target.value)}
         value={links}
+        className={emptyFields.includes("links") ? "error" : ""}
       />
 
       <label>Videos:</label>
@@ -58,6 +63,7 @@ const ResForm = () => {
         type="text"
         onChange={(e) => setVideos(e.target.value)}
         value={videos}
+        className={emptyFields.includes("videos") ? "error" : ""}
       />
 
       <button>Add Resource</button>
